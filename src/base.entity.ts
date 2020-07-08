@@ -1,8 +1,13 @@
 import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
+  Column
 } from 'typeorm'
+import { 
+  IsBoolean,
+  IsOptional
+ } from 'class-validator'
 
 export abstract class BaseEntity {
   @PrimaryGeneratedColumn('uuid')
@@ -19,4 +24,9 @@ export abstract class BaseEntity {
     type: 'timestamptz'
   })
   updatedAt: Date
+
+  @IsBoolean({ always: true })
+  @IsOptional({ always: true })
+  @Column({ name: 'is_banned', default: false })
+  isBanned?: boolean
 }
