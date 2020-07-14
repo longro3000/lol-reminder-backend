@@ -2,7 +2,8 @@ import {
   Entity, 
   Column,
   JoinColumn,
-  ManyToOne
+  OneToOne,
+  OneToMany
 } from 'typeorm'
 import { CrudValidationGroups } from '@nestjsx/crud'
 import {
@@ -15,12 +16,19 @@ import {
 } from 'class-validator'
 
 import { BaseEntity } from '../base.entity'
+import { User } from '../user/user.entity'
+
+export enum Lanes {
+  TOP = "top",
+  JUNGLE = "jungle",
+  MID = "mid",
+  BOT = "bot",
+  SUPPORT = "support"
+}
 
 const { CREATE, UPDATE } = CrudValidationGroups
 
   /* COMPLETE THESE
-    lanes: Lanes;
-    author: string;
     users: string[];
     upvote: number;
     downvote: number;
@@ -69,5 +77,19 @@ export class NotePack extends BaseEntity {
 
   @IsNotEmpty({ always: true })
   @IsOptional({ groups: [UPDATE] })
-  lanes: string[]
+  @IsArray({ always: true})
+  @Column({ name: 'lanes', type: 'enum', enum: Lanes, array: true, default: []})
+  lanes: Lanes[]
+
+  @OneToOne(() => User, {
+    onDelete: 'SET NULL'
+  })
+  @JoinColumn({
+    name: 'author_id'
+  })
+  author: User
+
+  @OneToMany(() => User, {
+    
+  })
 }
