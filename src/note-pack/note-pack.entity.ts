@@ -12,11 +12,14 @@ import {
   IsBoolean,
   IsOptional,
   IsArray,
-  MaxLength
+  MaxLength,
+  IsInt,
+  IsPositive
 } from 'class-validator'
 
 import { BaseEntity } from '../base.entity'
 import { User } from '../user/user.entity'
+import { UserNotePack } from '../user-notePack/user-notePack.entity';
 
 export enum Lanes {
   TOP = "top",
@@ -29,9 +32,6 @@ export enum Lanes {
 const { CREATE, UPDATE } = CrudValidationGroups
 
   /* COMPLETE THESE
-    users: string[];
-    upvote: number;
-    downvote: number;
     notes: Note[]; 
   */
 
@@ -89,7 +89,25 @@ export class NotePack extends BaseEntity {
   })
   author: User
 
-  @OneToMany(() => User, {
-    
+  @OneToMany(() => UserNotePack,
+    userNotePack => userNotePack.user, {
+      cascade: true
   })
+  user: UserNotePack[]
+
+  @IsNotEmpty({ always: true })
+  @IsInt({ always: true })
+  @IsOptional({ always: true })
+  @IsPositive()
+  @Column({ name: 'upvote', type: 'int', default: 0 })
+  upvote: number
+
+  @IsNotEmpty({ always: true })
+  @IsInt({ always: true })
+  @IsOptional({ always: true })
+  @IsPositive()
+  @Column({ name: 'upvote', type: 'int', default: 0 })
+  downvote: number
+
+  @Column()
 }
