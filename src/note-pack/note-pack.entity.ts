@@ -98,7 +98,7 @@ export class NotePack extends BaseEntity {
     userNotePack => userNotePack.user, {
       cascade: true
   })
-  user: UserNotePack[]
+  users: UserNotePack[]
 
   @IsNotEmpty({ always: true })
   @IsInt({ always: true })
