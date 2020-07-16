@@ -14,12 +14,17 @@ import {
   IsArray,
   MaxLength,
   IsInt,
-  IsPositive
+  IsPositive,
+  IsObject,
+  
+  ValidateNested
 } from 'class-validator'
+import { Type } from 'class-transformer'
 
 import { BaseEntity } from '../base.entity'
 import { User } from '../user/user.entity'
 import { UserNotePack } from '../user-notePack/user-notePack.entity';
+import { NoteDTO } from '../note/note.dto'
 
 export enum Lanes {
   TOP = "top",
@@ -109,5 +114,9 @@ export class NotePack extends BaseEntity {
   @Column({ name: 'upvote', type: 'int', default: 0 })
   downvote: number
 
-  @Column()
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Column({ type: 'jsonb' })
+  @Type(() => NoteDTO)
+  notes: NoteDTO[]
 }
