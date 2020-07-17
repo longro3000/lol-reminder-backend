@@ -20,10 +20,8 @@ import { UserNotePack } from '../user-notePack/user-notePack.entity';
 import { SummonerDTO } from '../summoner/summoner.dto'
 import { BaseEntity } from '../base.entity'
 
-
 const { UPDATE } = CrudValidationGroups
 
-    summoner: Summoner;
 @Entity('user')
 export class User extends BaseEntity {
   
