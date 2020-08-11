@@ -2,14 +2,14 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { Injectable } from '@nestjs/common'
 
-import { NotePack } from './note-pack.entity'
+import { Match } from './match.entity'
 import { BaseCrudService } from '../base.service';
 
 @Injectable()
-export class NotePackService extends BaseCrudService<NotePack> {
+export class MatchService extends BaseCrudService<Match> {
   constructor(
-    @InjectRepository(NotePack) notePackRepo: Repository<NotePack>
+    @InjectRepository(Match) matchRepo: Repository<Match>
   ) {
-    super(notePackRepo)
+    super(matchRepo)
   }
 }
