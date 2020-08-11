@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 
-import { UserNotePackService } from './user-notepack.service.ts'
+import { UserNotePackService } from './user-notepack.service'
 import { UserNotePack } from './user-notepack.entity'
 
 @Module({
