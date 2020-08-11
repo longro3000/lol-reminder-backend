@@ -15,8 +15,6 @@ import {
   MaxLength,
   IsInt,
   IsPositive,
-  IsObject,
-  
   ValidateNested
 } from 'class-validator'
 import { Type } from 'class-transformer'
@@ -34,7 +32,7 @@ export enum Lanes {
   SUPPORT = "support"
 }
 
-const { CREATE, UPDATE } = CrudValidationGroups
+const { UPDATE } = CrudValidationGroups
 
   /* COMPLETE THESE
     notes: Note[]; 
