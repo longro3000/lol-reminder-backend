@@ -9,7 +9,6 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { BaseCrudService } from '../base.service'
 import { UserNotePack } from './user-notePack.entity'
 
-
 @Injectable()
 export class UserNotePackService extends BaseCrudService<UserNotePack> {
   constructor(
