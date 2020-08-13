@@ -1,5 +1,5 @@
 export enum AppFeature {
   Matches = 'matches',
-  NotePacks = 'note-packs',
+  NotePacks = 'notepacks',
   Users = 'users'
 }

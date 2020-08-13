@@ -1,10 +1,14 @@
 import { CrudController } from '@nestjsx/crud'
 import { NotFoundException, Param, Get } from '@nestjs/common'
 
+import { AppFeature } from '../app.type'
+import { Match } from './match.entity'
+import { MatchService } from './match.service'
 
-@AppCrudController(AppFeature.TestAssignments, {
+
+@AppCrudController(AppFeature.Matches, {
   model: {
-    type: TestAssignment,
+    type: Match,
   },
   query: {
     join: {
@@ -15,8 +19,8 @@ import { NotFoundException, Param, Get } from '@nestjs/common'
   },
 })
 export class MatchController
-  implements CrudController<TestAssignment> {
-  constructor(public service: TestAssignmentsService) {}
+  implements CrudController<Match> {
+  constructor(public service: MatchService) {}
 
   @Get('/completed')
   async getCompleted() {
