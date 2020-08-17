@@ -34,10 +34,6 @@ export enum Lanes {
 
 const { UPDATE } = CrudValidationGroups
 
-  /* COMPLETE THESE
-    notes: Note[]; 
-  */
-
 @Entity('note-pack')
 export class NotePack extends BaseEntity {
   @IsNotEmpty({ always: true })

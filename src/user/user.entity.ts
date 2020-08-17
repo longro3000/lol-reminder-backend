@@ -69,5 +69,5 @@ export class User extends BaseEntity {
   @ValidateNested({ each: true })
   @Column({ type: 'jsonb' })
   @Type(() => SummonerDTO)
-  notes: SummonerDTO[]
+  summoners: SummonerDTO[]
 }
