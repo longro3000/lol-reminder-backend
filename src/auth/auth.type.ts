@@ -2,7 +2,8 @@ import { SummonerDTO } from './../summoner/summoner.dto';
 
 export enum UserType {
   User = 'user',
-  Admin = 'admin'
+  Admin = 'admin',
+  Guest = 'guest'
 }
 
 export interface AuthenticatedUser {
