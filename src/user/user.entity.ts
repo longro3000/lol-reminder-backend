@@ -1,7 +1,9 @@
 import { 
   Entity, 
   Column,
-  OneToMany
+  OneToMany,
+  ManyToMany,
+  JoinTable
 } from 'typeorm'
 import { CrudValidationGroups } from '@nestjsx/crud'
 import {
@@ -16,6 +18,7 @@ import {
 } from 'class-validator'
 import { Type } from 'class-transformer'
 
+import { Role } from '../roles/role.entity'
 import { UserNotePack } from '../user-notePack/user-notePack.entity';
 import { SummonerDTO } from '../summoner/summoner.dto'
 import { BaseEntity } from '../base.entity'
