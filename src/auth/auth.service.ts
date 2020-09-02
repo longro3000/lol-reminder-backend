@@ -32,13 +32,13 @@ export default class AuthService {
     const payload: JwtTokenPayload = {
       email: user.email,
       id: user.id,
-      type: user.type
+      type: user.type,
+      username: user.username
     }
 
     const response: any = {
       accessToken: await this.generateToken(payload, user.type),
       ...payload,
-      username: user.username,
       summoner: user.summoners,
     }
 

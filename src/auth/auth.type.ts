@@ -25,6 +25,5 @@ export type JwtTokenPayload = {
   id: string,
   email: string,
   username: string,
-  password: string,
   type: UserType
 }
