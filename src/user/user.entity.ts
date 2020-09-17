@@ -3,7 +3,8 @@ import {
   Column,
   OneToMany,
   ManyToMany,
-  JoinTable
+  JoinTable,
+  BeforeInsert
 } from 'typeorm'
 import { CrudValidationGroups } from '@nestjsx/crud'
 import {
@@ -17,6 +18,7 @@ import {
   ValidateNested
 } from 'class-validator'
 import { Type } from 'class-transformer'
+import * as bcrypt from 'bcrypt'
 
 import { Role } from '../roles/role.entity'
 import { UserNotePack } from '../user-notePack/user-notePack.entity';
@@ -81,4 +83,14 @@ export class User extends BaseEntity {
     inverseJoinColumn: { name: 'role_id' },
   })
   roles: Role[]
+
+  @BeforeInsert()
+  async hashPassword() {
+    this.password = await bcrypt.hash(this.password
+      , 10)
+  }
+
+  async comparePassword(attempt: string): Promise<boolean> {
+    return await bcrypt.compare(attempt, this.password)
+  }
 }

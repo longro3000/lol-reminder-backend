@@ -51,10 +51,11 @@ export class UserJwtAuthStrategy extends PassportStrategy(
       permissions: Array.from(
         new Set(
           user.roles.reduce<string[]>(
-            (acc, curr) => acc.concat(curr.permissions)
+            (acc, curr) => acc.concat(curr.permissions),
+            [],
           ),
         ),
-      )
+      ),
     }
   }
 }
