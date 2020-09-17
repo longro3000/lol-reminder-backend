@@ -2,7 +2,10 @@ import {
   IsString,
   IsNotEmpty,
   IsOptional,
-  MaxLength
+  MaxLength,
+  IsPositive,
+  IsInt,
+  IsEnum
 } from 'class-validator'
 import { CrudValidationGroups } from '@nestjsx/crud'
 import { 
@@ -13,7 +16,7 @@ import {
 } from 'typeorm'
 
 import { BaseEntity } from '../base.entity'
-import { SummonerDTO } from '../summoner/summoner.dto'
+import { SummonerDTO, Server } from '../summoner/summoner.dto'
 import { NotePack } from '../note-pack/note-pack.entity'
 
 const { CREATE, UPDATE } = CrudValidationGroups
@@ -29,10 +32,14 @@ export class Match extends BaseEntity {
 
   @IsNotEmpty({ always: true })
   @IsOptional({ groups: [UPDATE] })
-  @IsString({ always: true })
-  @MaxLength(40, { always: true })
-  @Column({ name: 'matchId', type: 'varchar', length: 40})
-  matchId: string
+  @IsInt({ always: true })
+  @IsPositive()
+  @Column({ name: 'matchId', type: 'int', length: 40})
+  matchId: number
+
+  @IsEnum(Server)
+  @IsNotEmpty({ always: true })
+  server: Server
   
   @OneToOne(() => NotePack, {
     onDelete: 'SET NULL'

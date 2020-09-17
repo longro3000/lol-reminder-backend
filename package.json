@@ -30,6 +30,8 @@
     "@nestjs/typeorm": "^7.1.0",
     "@nestjsx/crud": "^4.6.2",
     "@nestjsx/crud-typeorm": "^4.6.2",
+    "@types/bcrypt": "^3.0.0",
+    "bcrypt": "^5.0.0",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.12.2",
     "dotenv": "^8.2.0",
