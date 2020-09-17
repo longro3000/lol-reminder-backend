@@ -14,6 +14,7 @@ export interface AuthenticatedUser {
   summoners: SummonerDTO[],
   username: string,
   isAdmin: boolean,
+  roles?: string[],
   permissions?: string[]
 }
 

@@ -1,5 +1,4 @@
-export const GOOGLE_ID_TOKEN_USER = 'google-id-token-user'
-export const GOOGLE_ID_TOKEN_STUDENT = 'google-id-token-student'
+export const AUTH_TOKEN = 'auth_token'
 export const JWT_AUTH_USER = 'jwt-auth-user'
 export const JWT_AUTH_ADMIN = 'jwt-auth-admin'
 export const JWT_AUTH_GUEST = 'jwt-auth-guest'
