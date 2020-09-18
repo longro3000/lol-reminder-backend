@@ -8,6 +8,7 @@ import { AppCrudController } from '../app.decorator'
 import { AppFeature } from '../app.type'
 import AuthService from '../auth/auth.service'
 import BypassAuth from '../auth/bypass-auth.decorator'
+import { AppAuthGuard } from '../auth/auth.guard'
 
 @AppCrudController(AppFeature.Users, {
   model: {
@@ -22,5 +23,8 @@ export class UserController implements CrudController<User> {
 
   @Post('login')
   @BypassAuth()
-  @UseGuards()
+  @UseGuards(AppAuthGuard)
+  login(@Req() req: Request) {
+    return this.authService.login(req.user)
+  }
 }
