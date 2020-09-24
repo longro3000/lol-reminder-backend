@@ -39,13 +39,9 @@ const customPermissions: Permission[] = []
 export const PERMISSION_GROUPS: PermissionGroup[] = [
   makePermissionGroup(AppFeature.Roles),
   makePermissionGroup(AppFeature.Users),
-  makePermissionGroup(AppFeature.Students),
-  makePermissionGroup(AppFeature.Questions),
-  makePermissionGroup(AppFeature.Courses),
-  makePermissionGroup(AppFeature.Tests),
-  makePermissionGroup(AppFeature.Templates),
-  makePermissionGroup(AppFeature.Topics),
-  makePermissionGroup(AppFeature.Applications),
+  makePermissionGroup(AppFeature.Matches),
+  makePermissionGroup(AppFeature.NotePacks),
+  makePermissionGroup(AppFeature.Permissions),
   {
     group: AppFeature.Misc,
     description: 'Misc',

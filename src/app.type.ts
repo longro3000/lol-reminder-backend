@@ -3,5 +3,6 @@ export enum AppFeature {
   NotePacks = 'notepacks',
   Users = 'users',
   Permissions = 'permissions',
-  Roles = 'roles'
+  Roles = 'roles',
+  Misc = 'misc',
 }
