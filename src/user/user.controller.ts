@@ -1,4 +1,4 @@
-import { CrudController } from '@nestjsx/crud'
+import { CrudController, Override, CrudRequest, ParsedRequest, ParsedBody } from '@nestjsx/crud'
 import { Post, Req, UseGuards, Body, BadRequestException } from '@nestjs/common'
 import { Request } from 'express'
 
@@ -25,11 +25,20 @@ export class UserController implements CrudController<User> {
     return this
   }
 
-  @Post('login')
+  @Post('signin')
   @BypassAuth()
   @UseGuards(AppAuthGuard)
   login(@Req() req: Request) {
     return this.authService.login(req.user)
+  }
+
+  @Override()
+  @BypassAuth()
+  gitcreateOne(
+    @ParsedRequest() parsedReq: CrudRequest,
+    @ParsedBody() body: Template,
+  ) {
+    return this.base.createOneBase!(parsedReq, body)
   }
 
   @Post('check-email')
