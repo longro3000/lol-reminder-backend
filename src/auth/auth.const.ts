@@ -1,4 +1,5 @@
-export const AUTH_TOKEN = 'auth_token'
+export const USER_TOKEN = 'user_token'
+export const GUEST_TOKEN = 'guest_token'
 export const JWT_AUTH_USER = 'jwt-auth-user'
 export const JWT_AUTH_ADMIN = 'jwt-auth-admin'
 export const JWT_AUTH_GUEST = 'jwt-auth-guest'
