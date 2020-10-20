@@ -28,13 +28,20 @@ export class UserController implements CrudController<User> {
   @Post('signin')
   @BypassAuth()
   @UseGuards(AppAuthGuard)
-  login(@Req() req: Request) {
+  signIn(@Req() req: Request) {
+    return this.authService.login(req.user)
+  }
+
+  @Post('signin-as-guest')
+  @BypassAuth()
+  @UseGuards(AppAuthGuard)
+  signInAsGuest(@Req() req: Request) {
     return this.authService.login(req.user)
   }
 
   @Override()
   @BypassAuth()
-  gitcreateOne(
+  createOne(
     @ParsedRequest() parsedReq: CrudRequest,
     @ParsedBody() body: Template,
   ) {

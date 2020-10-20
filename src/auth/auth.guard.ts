@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common'
 import { AuthGuard } from '@nestjs/passport'
 
-import { AUTH_TOKEN } from './auth.const'
+import { USER_TOKEN, GUEST_TOKEN } from './auth.const'
 
 @Injectable()
 
-export class AppAuthGuard extends AuthGuard (AUTH_TOKEN) {}
+export class UserAuthGuard extends AuthGuard (USER_TOKEN) {}
+export class GuestAuthGuard extends AuthGuard (GUEST_TOKEN) {}
