@@ -4,12 +4,12 @@ import { Injectable, UnauthorizedException, Logger } from '@nestjs/common'
 
 import { UserService } from '../user/user.service'
 import AuthService from './auth.service'
-import { AUTH_TOKEN } from './auth.const'
+import { USER_TOKEN, GUEST_TOKEN } from './auth.const'
 
 @Injectable()
 export class UserAuthStrategy extends PassportStrategy(
   Strategy,
-  AUTH_TOKEN
+  USER_TOKEN
 ) {
   constructor(
     private userService: UserService,
@@ -34,7 +34,7 @@ export class UserAuthStrategy extends PassportStrategy(
 @Injectable()
 export class GuestAuthStrategy extends PassportStrategy(
   Strategy,
-  AUTH_TOKEN
+  GUEST_TOKEN
 ) {
   constructor(
     private userService: UserService,
