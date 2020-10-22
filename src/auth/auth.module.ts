@@ -23,7 +23,8 @@ import { UserAuthGuard, GuestAuthGuard } from './auth.guard'
   ],
   providers: [
     AuthService,
-    AuthStrategy,
+    GuestAuthStrategy,
+    UserAuthStrategy,
     UserJwtAuthStrategy,
     UserJwtAuthGuard,
     JwtAuthGuard
