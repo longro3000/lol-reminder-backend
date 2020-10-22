@@ -5,7 +5,6 @@ import { WINSTON_MODULE_PROVIDER } from 'nest-winston'
 import { AppFeature } from './app.type'
 import { UserType } from './auth/auth.type'
 import { JwtAuthGuard } from './auth/jwt.guard'
-import { CrudPermissionGuard } from './auth/permission.guard'
 import { WithUserTypes } from './auth/with-usertypes.decorator'
 
 export const AppCrudController = (
@@ -26,7 +25,6 @@ export const AppCrudController = (
   }
 
   decorators.push(UseGuards(JwtAuthGuard))
-  decorators.push(UseGuards(CrudPermissionGuard))
 
   if (crudOptions) {
     const idParam = {

@@ -18,7 +18,11 @@ export class UserService extends BaseCrudService<User> {
   }
 
   async validateUser(username: string, password: string) {
-    const user = await this.repository.findOne({username: username});
+    const user = await this.repository.findOne({
+      where: {
+      username: username,
+      isBanned: false
+    }});
     if (user && user.comparePassword(password)) {
       const { password, ...result } = user;
       return result;

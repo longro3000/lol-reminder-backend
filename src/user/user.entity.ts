@@ -76,14 +76,6 @@ export class User extends BaseEntity {
   @Type(() => SummonerDTO)
   summoners: SummonerDTO[]
 
-  @ManyToMany(() => Role)
-  @JoinTable({
-    name: 'user_roles',
-    joinColumn: { name: 'user_id' },
-    inverseJoinColumn: { name: 'role_id' },
-  })
-  roles: Role[]
-
   @BeforeInsert()
   async hashPassword() {
     this.password = await bcrypt.hash(this.password, 10)

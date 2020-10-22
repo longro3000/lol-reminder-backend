@@ -11,11 +11,9 @@ export interface AuthenticatedUser {
   type: UserType,
   email: string, 
   avatar: string,
-  summoners: SummonerDTO[],
+  summoners?: SummonerDTO[],
   username: string,
-  isAdmin: boolean,
-  roles?: string[],
-  permissions?: string[]
+  isAdmin: boolean
 }
 
 export type LoginResponse = {

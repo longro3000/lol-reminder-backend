@@ -62,7 +62,13 @@ export class GuestAuthStrategy extends PassportStrategy(
   }
 
   async validate(): Promise<any> {
-    const guest = {}
-    return user
+    return {
+      id: 0,
+      type: UserType.Guest,
+      email: "", 
+      avatar: "",
+      username: "Guest",
+      isAdmin: false
+    }
   }
 }

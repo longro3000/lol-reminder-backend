@@ -34,8 +34,7 @@ export class UserJwtAuthStrategy extends PassportStrategy(
       where: {
         username: payload.username,
         isBanned: false
-      },
-      relations: ['roles']
+      }
     })
 
     if (!user) return undefined
@@ -48,14 +47,6 @@ export class UserJwtAuthStrategy extends PassportStrategy(
       avatar: user.avatar,
       summoners: user.summoners,
       isAdmin: user.isAdmin,
-      permissions: Array.from(
-        new Set(
-          user.roles.reduce<string[]>(
-            (acc, curr) => acc.concat(curr.permissions),
-            [],
-          ),
-        ),
-      ),
     }
   }
 }
