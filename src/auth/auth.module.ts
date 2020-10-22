@@ -1,5 +1,3 @@
-import { AppAuthGuard } from './auth.guard';
-
 import { Module, Global } from '@nestjs/common'
 import { JwtModule } from '@nestjs/jwt'
 import { PassportModule } from '@nestjs/passport'
@@ -10,10 +8,10 @@ import {
   UserJwtAuthGuard,
   JwtAuthGuard,
 } from './jwt.guard'
-import { AuthStrategy } from './auth.strategy'
+import { GuestAuthStrategy, UserAuthStrategy } from './auth.strategy'
 import { UserModule } from '../user/user.module'
 import { AppConfigModule } from '../config/config.module'
-import { CrudPermissionGuard } from './permission.guard'
+import { UserAuthGuard, GuestAuthGuard } from './auth.guard'
 
 @Global()
 @Module({
@@ -28,15 +26,14 @@ import { CrudPermissionGuard } from './permission.guard'
     AuthStrategy,
     UserJwtAuthStrategy,
     UserJwtAuthGuard,
-    JwtAuthGuard,
-    CrudPermissionGuard,
+    JwtAuthGuard
   ],
   exports: [
     UserJwtAuthGuard,
-    AppAuthGuard,
+    UserAuthGuard,
+    GuestAuthGuard,
     JwtAuthGuard,
-    AuthService,
-    CrudPermissionGuard,
+    AuthService
   ],
 })
 export class AuthModule {}

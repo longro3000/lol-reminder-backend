@@ -20,7 +20,6 @@ import {
 import { Type } from 'class-transformer'
 import * as bcrypt from 'bcrypt'
 
-import { Role } from '../roles/role.entity'
 import { UserNotePack } from '../user-notePack/user-notePack.entity';
 import { SummonerDTO } from '../summoner/summoner.dto'
 import { BaseEntity } from '../base.entity'

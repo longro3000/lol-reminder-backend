@@ -35,16 +35,7 @@ export class UserAuthStrategy extends PassportStrategy(
       avatar: user.avatar,
       summoners: user.summoners,
       username: user.username,
-      isAdmin: user.isAdmin,
-      roles: user.roles,
-      permissions: Array.from(
-        new Set(
-          user.roles.reduce<string[]>(
-            (acc, curr) => acc.concat(curr.permissions),
-            [],
-          ),
-        ),
-      )
+      isAdmin: user.isAdmin
     }
   }
 }
