@@ -34,7 +34,7 @@ export class CrudPermissionGuard implements CanActivate {
       return false
     }
 
-    // Permissions don't apply to student
+    // Permissions don't apply to guest
     if (user.type === UserType.User) {
       return true
     }

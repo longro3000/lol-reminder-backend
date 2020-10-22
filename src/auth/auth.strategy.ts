@@ -5,6 +5,7 @@ import { Injectable, UnauthorizedException, Logger } from '@nestjs/common'
 import { UserService } from '../user/user.service'
 import AuthService from './auth.service'
 import { USER_TOKEN, GUEST_TOKEN } from './auth.const'
+import { UserType } from './auth.type';
 
 @Injectable()
 export class UserAuthStrategy extends PassportStrategy(
@@ -24,10 +25,27 @@ export class UserAuthStrategy extends PassportStrategy(
   async validate(username: string, password: string): Promise<any> {
     const user = await this.userService.validateUser(username, password)
 
-    if (!user) {
+    if (!user || user.isBanned === true) {
       throw new UnauthorizedException()
     }
-    return user
+    return {
+      id: user.id,
+      type: UserType.User,
+      email: user.email, 
+      avatar: user.avatar,
+      summoners: user.summoners,
+      username: user.username,
+      isAdmin: user.isAdmin,
+      roles: user.roles,
+      permissions: Array.from(
+        new Set(
+          user.roles.reduce<string[]>(
+            (acc, curr) => acc.concat(curr.permissions),
+            [],
+          ),
+        ),
+      )
+    }
   }
 }
 
@@ -40,18 +58,11 @@ export class GuestAuthStrategy extends PassportStrategy(
     private userService: UserService,
     private authService: AuthService
   ) {
-    super({
-      usernameField: 'username',
-      passwordField: 'password',
-    })
+    super()
   }
 
-  async validate(username: string, password: string): Promise<any> {
-    const user = await this.userService.validateUser(username, password)
-
-    if (!user) {
-      throw new UnauthorizedException()
-    }
+  async validate(): Promise<any> {
+    const guest = {}
     return user
   }
 }
