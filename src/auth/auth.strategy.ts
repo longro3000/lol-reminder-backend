@@ -32,7 +32,6 @@ export class UserAuthStrategy extends PassportStrategy(
       id: user.id,
       type: UserType.User,
       email: user.email, 
-      avatar: user.avatar,
       summoners: user.summoners,
       username: user.username,
       isAdmin: user.isAdmin

