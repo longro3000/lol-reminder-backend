@@ -44,11 +44,12 @@ export class GuestJwtAuthGuard extends AuthGuard(JWT_AUTH_GUEST) {
 export class JwtAuthGuard implements CanActivate {
   constructor(
     private userGuard: UserJwtAuthGuard,
+    private guestGuard: GuestJwtAuthGuard,
     private reflector: Reflector,
   ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    let userAuth
+    let userAuth, guestAuth
 
     // Handler context takes priority
     let userTypes =
@@ -63,7 +64,15 @@ export class JwtAuthGuard implements CanActivate {
       userAuth = await this.userGuard.canActivate(context)
     } catch (_e) {}
 
+    try {
+      guestAuth = await this.guestGuard.canActivate(context)
+    } catch (_e) {}
+
     if (userTypes.includes(UserType.User) && Boolean(userAuth)) {
+      return true
+    }
+
+    if (userTypes.includes(UserType.Guest) && Boolean(guestAuth)) {
       return true
     }
 

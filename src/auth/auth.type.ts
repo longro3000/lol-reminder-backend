@@ -10,7 +10,6 @@ export interface AuthenticatedUser {
   id: string,
   type: UserType,
   email: string, 
-  avatar: string,
   summoners?: SummonerDTO[],
   username: string,
   isAdmin: boolean

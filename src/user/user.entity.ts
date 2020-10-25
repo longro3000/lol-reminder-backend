@@ -45,13 +45,6 @@ export class User extends BaseEntity {
 
   @IsNotEmpty({ always: true })
   @IsString({ always: true })
-  @MaxLength(100, { always: true })
-  @IsOptional({ groups: [UPDATE] })
-  @Column({ name: 'avatar', type: 'varchar', length: 100})
-  avatar: string
-
-  @IsNotEmpty({ always: true })
-  @IsString({ always: true })
   @IsEmail({ require_tld: false }, { always: true })
   @IsOptional({ groups: [UPDATE] })
   @Column({ name: 'email', type: 'varchar', length: 40, unique: true, nullable: true})

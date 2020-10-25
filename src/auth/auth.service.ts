@@ -42,10 +42,6 @@ export default class AuthService {
       summoner: user.summoners,
     }
 
-    if (user.avatar) {
-      response.avatar = user.avatar
-    }
-
     return response
   }
 }

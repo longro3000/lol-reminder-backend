@@ -9,7 +9,7 @@ import {
   UserType
 } from './auth.type'
 import { UserService } from '../user/user.service'
-import { JWT_AUTH_USER } from './auth.const'
+import { JWT_AUTH_USER, JWT_AUTH_GUEST } from './auth.const'
 
 @Injectable()
 export class UserJwtAuthStrategy extends PassportStrategy(
@@ -44,9 +44,38 @@ export class UserJwtAuthStrategy extends PassportStrategy(
       id: user.id,
       type: UserType.User,
       email: user.email, 
-      avatar: user.avatar,
       summoners: user.summoners,
       isAdmin: user.isAdmin,
     }
+  }
+}
+
+@Injectable()
+export class GuestJwtAuthStrategy extends PassportStrategy(
+  Strategy,
+  JWT_AUTH_GUEST
+) {
+  constructor(
+    configService: AppConfigService
+  ) {
+    super({
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      ignoreExpiration: false,
+      secretOrKey: configService.getJwtSecrect(UserType.Guest)
+    })
+  }
+
+  async validate(
+    payload: JwtTokenPayload
+  ): Promise<AuthenticatedUser | undefined> {
+    if (payload.username === 'Guest' && payload.type === UserType.Guest)
+    return {
+      id: '0',
+      type: UserType.Guest,
+      email: "",
+      username: "Guest",
+      isAdmin: false
+    }
+    else return undefined
   }
 }
