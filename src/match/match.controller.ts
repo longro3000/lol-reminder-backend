@@ -1,5 +1,5 @@
-import { CrudController } from '@nestjsx/crud'
-import { NotFoundException, Param, Get } from '@nestjs/common'
+import { CrudController, Override } from '@nestjsx/crud'
+import { NotFoundException, Param, Get, Req, Body } from '@nestjs/common'
 
 import { AppFeature } from '../app.type'
 import { Match } from './match.entity'
@@ -21,5 +21,20 @@ import { AppCrudController } from '../app.decorator'
 })
 export class MatchController
   implements CrudController<Match> {
-  constructor(public service: MatchService) {}
+  constructor(
+    public service: MatchService
+
+  ) {}
+
+  get base(): CrudController<Match> {
+    return this
+  }  
+
+  @Get('/summoners/:summonerId')
+  async getMatchHistoryBySummonerId (
+    @Req() req: Request,
+    @Param('summonerId') summonerId: string,
+  ) {
+    
+  }
 }

@@ -15,7 +15,12 @@ import { UserAuthGuard, GuestAuthGuard } from '../auth/auth.guard'
     type: User
   },
   query: {
-
+    join: {
+      notePacks: {
+        allow: [],
+        eager: true
+      }
+    }
   }
 })
 export class UserController implements CrudController<User> {
