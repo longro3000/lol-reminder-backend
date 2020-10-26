@@ -1,5 +1,5 @@
 import { CrudController, Override, CrudRequest, ParsedRequest, ParsedBody } from '@nestjsx/crud'
-import { Post, Req, UseGuards, Body, BadRequestException } from '@nestjs/common'
+import { Post, Req, UseGuards, Body, BadRequestException, Get } from '@nestjs/common'
 import { Request } from 'express'
 
 import { UserService } from './user.service'
@@ -32,7 +32,7 @@ export class UserController implements CrudController<User> {
     return this.authService.login(req.user)
   }
 
-  @Post('signin-as-guest')
+  @Get('signin-as-guest')
   @BypassAuth()
   @UseGuards(GuestAuthGuard)
   signInAsGuest(@Req() req: Request) {
