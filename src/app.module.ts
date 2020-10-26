@@ -17,7 +17,18 @@ import { AppService } from './app.service';
         configService.typeOrmConfig
     }),
     WinstonModule.forRootAsync({
-      
+      useFactory: (configService: AppConfigService) => {
+        const config: any = {
+          transports: [
+            new winston.transports.Console({
+              format: winston.format.combine(
+                winston.format.timestamp(),
+                utilities.format.nestLike()
+              )
+            })
+          ]
+        }
+      }
     })
   ],
   controllers: [AppController],
