@@ -196,7 +196,7 @@ export interface ParticipantIdentity {
   player: Player
 }
 
-export interface Match {
+export interface LoLMatch {
   gameId: number,
   platformId: string,
   gameCreation: number,

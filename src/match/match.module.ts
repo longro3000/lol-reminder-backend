@@ -1,4 +1,4 @@
-import { Module, forwardRef } from '@nestjs/common'
+import { Module, forwardRef, HttpModule } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 
 import { NotePackModule } from '../note-pack/note-pack.module'
@@ -9,7 +9,8 @@ import { MatchController } from './match.controller'
 @Module({
   imports: [
     TypeOrmModule.forFeature([Match]),
-    forwardRef(() => NotePackModule)
+    forwardRef(() => NotePackModule),
+    HttpModule
   ],
   providers: [MatchService],
   controllers: [MatchController],
