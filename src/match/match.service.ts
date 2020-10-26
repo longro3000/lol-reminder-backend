@@ -17,8 +17,10 @@ export class MatchService extends BaseCrudService<Match> {
     super(matchRepo)
   }
 
-  async findByAccountId(region: string, accountId: string): Promise<LoLMatch> {
+  async fetchMatchListByAccountId(region: string, accountId: string): Promise<LoLMatch> {
     const response = await this.httpService.get(`${baseUrls[region]}/match/v4/matchlists/by-account/${accountId}`).toPromise()
     return response.data
   }
+
+  async findMatchListByAccountId(region: string, accountId: string): Promise<
 }

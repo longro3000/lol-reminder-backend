@@ -20,6 +20,10 @@ export class AppConfigService {
     return !env || ['production', 'prod'].includes(env.toLowerCase())
   }
 
+  get riotToken(): string {
+    return this.configService.get<string>('RIOT_TOKEN')
+  }
+
   getJwtSecrect(userType: UserType): string {
     return this.configService.get<string>(
       'JWT_SECRET_' + userType.toUpperCase(),

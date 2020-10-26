@@ -47,5 +47,5 @@ export class Match extends BaseEntity {
   @JoinColumn({
     name: 'note_pack_id'
   })
-  notePack: string
+  notePackId: string
 }
