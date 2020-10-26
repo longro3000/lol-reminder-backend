@@ -1,3 +1,6 @@
+import { NotePackModule } from './note-pack/note-pack.module';
+import { MatchModule } from './match/match.module';
+import { UserNotePackModule } from './user-notePack/user-notePack.module';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { AppConfigService } from './config/config.service';
@@ -44,9 +47,10 @@ import { AppService } from './app.service';
     }),
     UserModule,
     AuthModule,
-    
+    UserNotePackModule,
+    MatchModule,
+    NotePackModule
   ],
   controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
