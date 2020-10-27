@@ -12,12 +12,14 @@ import {
   Entity,
   Column,
   JoinColumn,
-  OneToOne 
+  OneToOne, 
+  OneToMany
 } from 'typeorm'
 
 import { BaseEntity } from '../base.entity'
 import { SummonerDTO, Server } from '../summoner/summoner.dto'
 import { NotePack } from '../note-pack/note-pack.entity'
+import { MatchNotePack } from 'src/match-notePack/match-notePack.entity'
 
 const { CREATE, UPDATE } = CrudValidationGroups
 
@@ -41,11 +43,9 @@ export class Match extends BaseEntity {
   @IsNotEmpty({ always: true })
   server: Server
   
-  @OneToOne(() => NotePack, {
-    onDelete: 'SET NULL'
+  @OneToMany(() => MatchNotePack,
+  matchNotePack => matchNotePack.match, {
+    cascade: true
   })
-  @JoinColumn({
-    name: 'note_pack_id'
-  })
-  notePackId: string
+  notePacks: MatchNotePack[]
 }

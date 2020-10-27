@@ -11,7 +11,8 @@ export interface MatchShort {
   season: number,
   timestamp: number,
   role: string,
-  lane: string
+  lane: string,
+  
 }
 
 export interface MatchList {

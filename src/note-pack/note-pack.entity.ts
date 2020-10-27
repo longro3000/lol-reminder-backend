@@ -23,6 +23,7 @@ import { BaseEntity } from '../base.entity'
 import { User } from '../user/user.entity'
 import { UserNotePack } from '../user-notePack/user-notePack.entity';
 import { NoteDTO } from '../note/note.dto'
+import { MatchNotePack } from 'src/match-notePack/match-notePack.entity'
 
 export enum Lanes {
   TOP = "top",
@@ -93,6 +94,12 @@ export class NotePack extends BaseEntity {
       cascade: true
   })
   users: UserNotePack[]
+
+  @OneToMany(() => MatchNotePack,
+    matchNotePack => matchNotePack.match, {
+      cascade: true
+  })
+  matches: MatchNotePack[]
 
   @IsNotEmpty({ always: true })
   @IsInt({ always: true })
