@@ -2,11 +2,12 @@ import { Module, Global } from '@nestjs/common'
 import { JwtModule } from '@nestjs/jwt'
 import { PassportModule } from '@nestjs/passport'
 
-import { UserJwtAuthStrategy } from './jwt.strategy'
+import { UserJwtAuthStrategy, GuestJwtAuthStrategy } from './jwt.strategy'
 import AuthService from './auth.service'
 import {
   UserJwtAuthGuard,
   JwtAuthGuard,
+  GuestJwtAuthGuard,
 } from './jwt.guard'
 import { GuestAuthStrategy, UserAuthStrategy } from './auth.strategy'
 import { UserModule } from '../user/user.module'
@@ -23,14 +24,19 @@ import { UserAuthGuard, GuestAuthGuard } from './auth.guard'
   ],
   providers: [
     AuthService,
+    UserAuthGuard,
+    GuestAuthGuard,
     GuestAuthStrategy,
     UserAuthStrategy,
     UserJwtAuthStrategy,
+    GuestJwtAuthStrategy,
     UserJwtAuthGuard,
+    GuestJwtAuthGuard,
     JwtAuthGuard
   ],
   exports: [
     UserJwtAuthGuard,
+    GuestJwtAuthGuard,
     UserAuthGuard,
     GuestAuthGuard,
     JwtAuthGuard,

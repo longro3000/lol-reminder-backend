@@ -1,7 +1,5 @@
-export const FETCH_MATCH_LIST = 'FETCH_MATCH_LIST'
-export const FETCH_MATCH_LIST_SUCCESS = 'FETCH_MATCH_LIST_SUCCESS'
-export const FETCH_MATCH = 'FETCH_MATCH'
-export const FETCH_MATCH_SUCCESS = 'FETCH_MATCH_SUCCESS'
+import { NotePack } from './../note-pack/note-pack.entity';
+import { MatchNotePack } from 'src/match-notePack/match-notePack.entity'
 
 export interface MatchShort {
   platformId: string,
@@ -12,7 +10,7 @@ export interface MatchShort {
   timestamp: number,
   role: string,
   lane: string,
-  
+  notePacks?: MatchNotePack[]
 }
 
 export interface MatchList {

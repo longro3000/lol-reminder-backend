@@ -4,7 +4,7 @@ import {
   IsEnum
 } from 'class-validator'
 
-export enum Server {
+export enum Region {
   EUW = "euw1",
   BRAZIL = "br1",
   KOREAN = "kr",
@@ -12,9 +12,9 @@ export enum Server {
 }
 
 export class SummonerDTO {
-  @IsEnum(Server)
+  @IsEnum(Region)
   @IsNotEmpty({ always: true })
-  server: Server
+  region: Region
 
   @IsString({ always: true })
   @IsNotEmpty({ always: true })

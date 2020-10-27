@@ -17,7 +17,7 @@ import {
 } from 'typeorm'
 
 import { BaseEntity } from '../base.entity'
-import { SummonerDTO, Server } from '../summoner/summoner.dto'
+import { SummonerDTO, Region } from '../summoner/summoner.dto'
 import { NotePack } from '../note-pack/note-pack.entity'
 import { MatchNotePack } from 'src/match-notePack/match-notePack.entity'
 
@@ -30,7 +30,7 @@ export class Match extends BaseEntity {
   @IsString({ always: true })
   @MaxLength(40, { always: true })
   @Column({ name: 'summoner', type: 'varchar', length: 40})
-  summoner: string
+  summonerId: string
 
   @IsNotEmpty({ always: true })
   @IsOptional({ groups: [UPDATE] })
@@ -39,9 +39,9 @@ export class Match extends BaseEntity {
   @Column({ name: 'matchId', type: 'int', length: 40})
   matchId: number
 
-  @IsEnum(Server)
+  @IsEnum(Region)
   @IsNotEmpty({ always: true })
-  server: Server
+  region: Region
   
   @OneToMany(() => MatchNotePack,
   matchNotePack => matchNotePack.match, {

@@ -5,8 +5,8 @@ import { Module, HttpModule } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { WinstonModule, utilities } from 'nest-winston'
 import winston from 'winston'
+import WinstonGraylog2 from 'winston-graylog2'
 
-import { AppController } from './app.controller'
 import { NotePackModule } from './note-pack/note-pack.module'
 import { MatchModule } from './match/match.module'
 import { UserNotePackModule } from './user-notePack/user-notePack.module'
@@ -38,22 +38,35 @@ import { UserModule } from './user/user.module'
             new winston.transports.Console({
               format: winston.format.combine(
                 winston.format.timestamp(),
-                utilities.format.nestLike()
-              )
-            })
-          ]
+                utilities.format.nestLike(),
+              ),
+            }),
+          ],
         }
         const graylogHost = configService.get<string>('GRAYLOG_HOST')
+
         if (graylogHost) {
+          config.transports.push(
+            new WinstonGraylog2({
+              graylog: {
+                servers: [
+                  {
+                    host: graylogHost,
+                    port: configService.get<number>('GRAYLOG_PORT', 12201),
+                  },
+                ],
+              },
+            }),
+          )
           config.format = winston.format.combine(
             winston.format.errors({ stack: true }),
-            winston.format.metadata()
+            winston.format.metadata(),
           )
         }
         return config
       },
       imports: [AppConfigModule],
-      inject: [AppConfigService]
+      inject: [AppConfigService],
     }),
     UserModule,
     AuthModule,
@@ -61,6 +74,5 @@ import { UserModule } from './user/user.module'
     MatchModule,
     NotePackModule
   ],
-  controllers: [AppController],
 })
 export class AppModule {}

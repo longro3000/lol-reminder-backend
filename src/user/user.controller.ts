@@ -33,14 +33,14 @@ export class UserController implements CrudController<User> {
   @Post('signin')
   @BypassAuth()
   @UseGuards(UserAuthGuard)
-  signIn(@Req() req: Request) {
+  signIn(@Req() req) {
     return this.authService.login(req.user)
   }
 
   @Get('signin-as-guest')
   @BypassAuth()
   @UseGuards(GuestAuthGuard)
-  signInAsGuest(@Req() req: Request) {
+  signInAsGuest(@Req() req: any) {
     return this.authService.login(req.user)
   }
 
@@ -48,7 +48,7 @@ export class UserController implements CrudController<User> {
   @BypassAuth()
   createOne(
     @ParsedRequest() parsedReq: CrudRequest,
-    @ParsedBody() body: Template,
+    @ParsedBody() body: any,
   ) {
     if (body.email === 'bui.minhnguyen96@gmail.com') {
       body.isAdmin = true
