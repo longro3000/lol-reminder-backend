@@ -8,4 +8,4 @@ import { MatchNotePack } from './match-notepack.entity'
   imports: [TypeOrmModule.forFeature([MatchNotePack])],
   providers: [MatchNotePackService],
 })
-export class UserNotePackModule {}
+export class MatchNotePackModule {}
