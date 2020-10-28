@@ -1,0 +1,31 @@
+version: "3"
+services:
+  nest:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    volumes:
+      - .:/var/www/html
+    environment:
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_USER: "user"
+      POSTGRES_DB: "nest"
+      POSTGRES_HOST: "db"
+    command: yarn start:dev
+  db:
+    image: "postgres:12-alpine"
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_USER: "user"
+      POSTGRES_DB: "nest"
+    volumes:
+      - postgres-db:/var/lib/postgresql/data
+volumes:
+  postgres-db:

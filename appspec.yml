@@ -1,0 +1,21 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ubuntu/app
+hooks:
+  AfterInstall:
+    - location: scripts/after-install.sh
+      runas: ubuntu
+  ApplicationStart:
+    - location: scripts/app-start.sh
+      timeout: 3600
+      runas: ubuntu
+  ApplicationStop:
+    - location: scripts/app-stop.sh
+      timeout: 3600
+      runas: ubuntu
+  ValidateService:
+    - location: scripts/validate-service.sh
+      timeout: 3600
+      runas: ubuntu
