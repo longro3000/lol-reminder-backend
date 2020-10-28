@@ -21,7 +21,7 @@ export class AppConfigService {
   }
 
   get riotToken(): string {
-    return this.configService.get<string>('RIOT_TOKEN')
+    return this.configService.get<string>('RIOT_TOKEN') || 'RGAPI-819622bf-4c86-4b74-b4ed-3e3dc654a0b0'
   }
 
   getJwtSecrect(userType: UserType): string {

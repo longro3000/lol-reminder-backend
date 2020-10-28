@@ -5,7 +5,6 @@ import { Injectable, HttpService } from '@nestjs/common'
 import { Match } from './match.entity'
 import { LoLMatch, MatchList } from './match.type'
 import { BaseCrudService } from '../base.service';
-import { Observable } from 'rxjs';
 import { baseUrls } from 'src/baseUrls'
 
 @Injectable()
@@ -27,7 +26,7 @@ export class MatchService extends BaseCrudService<Match> {
     const matches = await Promise.all(fetchedMatchList.matches.map(async (match) => {
       const notePacks = await this.repo.findOne({
         where: { matchId: match.gameId, server: region, summonerId: accountId }
-      }).then(match => match.notePacks)
+      }).then(match => match!.notePacks)
       return {
         ...match,
         notePacks: notePacks

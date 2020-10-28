@@ -1,7 +1,9 @@
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
 import { Logger, ValidationPipe } from '@nestjs/common'
 import { NestFactory } from '@nestjs/core'
 import morgan from 'morgan'
 import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston'
+import bodyParser from 'body-parser'
 
 import { AppModule } from './app.module'
 import { AppConfigService } from './config/config.service'
@@ -29,6 +31,24 @@ async function bootstrap() {
       },
     ),
   )
+
+  app.use(
+    bodyParser.json({
+      verify: (req: any, res, buf) => {
+        req.rawBody = buf
+      },
+    }),
+  )
+
+  const options = new DocumentBuilder()
+    .setTitle('LoL-reminder Backend')
+    .setDescription('REST APIs for LoL-reminder system')
+    .setVersion('1.0')
+    .addBearerAuth()
+    .build()
+
+  const apiDocs = SwaggerModule.createDocument(app, options)
+  SwaggerModule.setup('api-docs', app, apiDocs)
 
   /* //for typeform token validation
   app.use(

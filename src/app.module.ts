@@ -1,17 +1,19 @@
 
+
 import { AppConfigService } from './config/config.service';
 import { AppConfigModule } from './config/config.module';
 import { Module, HttpModule } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { WinstonModule, utilities } from 'nest-winston'
 import winston from 'winston'
-import WinstonGraylog2 from 'winston-graylog2'
+import WinstonGraylog2 from '@ngocketit/winston-graylog2'
 
 import { NotePackModule } from './note-pack/note-pack.module'
 import { MatchModule } from './match/match.module'
 import { UserNotePackModule } from './user-notePack/user-notePack.module'
 import { AuthModule } from './auth/auth.module'
 import { UserModule } from './user/user.module'
+import { MatchNotePackModule } from './match-notePack/match-notePack.module';
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
@@ -71,6 +73,7 @@ import { UserModule } from './user/user.module'
     UserModule,
     AuthModule,
     UserNotePackModule,
+    MatchNotePackModule,
     MatchModule,
     NotePackModule
   ],

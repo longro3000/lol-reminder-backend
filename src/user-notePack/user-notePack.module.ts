@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 
-import { UserNotePackService } from './user-notepack.service'
-import { UserNotePack } from './user-notepack.entity'
+import { UserNotePackService } from './user-notePack.service'
+import { UserNotePack } from './user-notePack.entity'
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserNotePack])],

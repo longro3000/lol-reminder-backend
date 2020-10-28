@@ -33,7 +33,7 @@ export class UserController implements CrudController<User> {
   @Post('signin')
   @BypassAuth()
   @UseGuards(UserAuthGuard)
-  signIn(@Req() req) {
+  signIn(@Req() req: any) {
     return this.authService.login(req.user)
   }
 

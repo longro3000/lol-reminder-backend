@@ -17,7 +17,7 @@ import { AppConfigService } from 'src/config/config.service'
       imports: [AppConfigModule],
       useFactory: (configService: AppConfigService) => ({
         headers: {
-          'X-Riot-Token': configService.get('riotToken')
+          'X-Riot-Token': configService.riotToken
         },
         timeout: 7000,
         maxRedirects: 5
