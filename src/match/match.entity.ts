@@ -36,7 +36,7 @@ export class Match extends BaseEntity {
   @IsOptional({ groups: [UPDATE] })
   @IsInt({ always: true })
   @IsPositive()
-  @Column({ name: 'matchId', type: 'int', length: 40})
+  @Column({ name: 'matchId', type: 'int'})
   matchId: number
 
   @IsEnum(Region)

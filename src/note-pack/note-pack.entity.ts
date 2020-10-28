@@ -65,20 +65,20 @@ export class NotePack extends BaseEntity {
 
   @IsNotEmpty({ always: true})
   @IsOptional({ groups: [UPDATE] })
-  @IsArray({ always: true})
-  @Column({ name: 'champions', type: 'varchar', length: 20, array: true, default: []})
+  @IsArray({ always: true })
+  @Column({ name: 'champions', type: 'varchar', array: true })
   champions: string[]
 
   @IsNotEmpty({ always: true})
   @IsOptional({ groups: [UPDATE] })
   @IsArray({ always: true})
-  @Column({ name: 'against_champions', type: 'varchar', length: 20, array: true, default: []})
+  @Column({ name: 'against_champions', type: 'varchar', array: true })
   againstChampions: string[]
 
   @IsNotEmpty({ always: true })
   @IsOptional({ groups: [UPDATE] })
   @IsArray({ always: true})
-  @Column({ name: 'lanes', type: 'enum', enum: Lanes, array: true, default: []})
+  @Column({ name: 'lanes', type: 'enum', enum: Lanes, array: true })
   lanes: Lanes[]
 
   @OneToOne(() => User, {
@@ -112,7 +112,7 @@ export class NotePack extends BaseEntity {
   @IsInt({ always: true })
   @IsOptional({ always: true })
   @IsPositive()
-  @Column({ name: 'upvote', type: 'int', default: 0 })
+  @Column({ name: 'downvote', type: 'int', default: 0 })
   downvote: number
 
   @IsArray()

@@ -18,7 +18,7 @@ import {
   ValidateNested
 } from 'class-validator'
 import { Type } from 'class-transformer'
-import * as bcrypt from 'bcrypt'
+import * as bcrypt from 'bcryptjs'
 
 import { UserNotePack } from '../user-notePack/user-notePack.entity';
 import { SummonerDTO } from '../summoner/summoner.dto'
